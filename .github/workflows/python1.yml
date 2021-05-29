@@ -32,6 +32,8 @@ jobs:
         python -m pip install numpy pyparsing ninja
     - name: Check dependencies
       run: |
+        pwd
+        ls -la
         ./tools/check_dependencies.sh
     - name: Build protobuf
       run: |

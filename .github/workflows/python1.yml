@@ -39,11 +39,12 @@ jobs:
         ./install_protobuf.sh
     - name: Build clif
       run: |
+        cd tools
         ./install_clif.sh
     - name: Build kaldi
       run: |
+        cd tools
         ./install_kaldi.sh
     - name: Build PyKaldi
       run: |
-        cd ..
         python3 setup.py install

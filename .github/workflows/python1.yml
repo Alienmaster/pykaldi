@@ -29,8 +29,8 @@ jobs:
         # python -m pip install --upgrade pip
         # python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        python -m pip install numpy pyparsing
-    - name: Build protobuf
+        python -m pip install numpy pyparsing ninja
+    - name: Check dependencies
       run: |
         ./tools/check_dependencies.sh
     - name: Build protobuf
@@ -41,7 +41,7 @@ jobs:
         ./tools/install_clif.sh
     - name: Build kaldi
       run: |
-        ./tools/install_clif.sh
+        ./tools/install_kaldi.sh
     - name: Build PyKaldi
       run: |
         python3 setup.py install

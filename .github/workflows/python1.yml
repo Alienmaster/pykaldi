@@ -46,6 +46,12 @@ jobs:
     - name: Build kaldi
       run: |
         cd tools
+        git clone -b pykaldi_02 https://github.com/pykaldi/kaldi.git
+        cd kaldi/tools
+        git pull
+        cd extras
+        sudo ./install_mkl.sh
+        cd ../../..
         ./install_kaldi.sh
     - name: Build PyKaldi
       run: |

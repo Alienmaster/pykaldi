@@ -11,14 +11,20 @@ on:
 
 jobs:
   build:
-
+    name: Remove unecessary stuff
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         python-version: [3.7, 3.8, 3.9]
-
+        
     steps:
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 512
+        swap-size-mb: 1024
+        remove-dotnet: 'true'
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
@@ -26,8 +32,4 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Check Diskspace
       run: |
-        df
-        apt list
-        sudo rm -rf "/usr/local/share/boost"
-        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         df

@@ -62,7 +62,12 @@ jobs:
     - name: Build PyKaldi
       run: |
         python3 setup.py install
+    - name: Test PyKaldi
+      run: |
+        python3 setup.py test
     - name: Create Wheel
       run: |
         python3 setup.py sdist bdist_wheel
+        cd dist
+        ls -l
         

@@ -11,13 +11,13 @@ on:
 
 jobs:
   build:
-    name: Remove unecessary stuff
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         python-version: [3.7, 3.8, 3.9]
-        
+
     steps:
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
@@ -25,11 +25,42 @@ jobs:
         remove-dotnet: 'true'
         remove-android: 'true'
         remove-haskell: 'true'
+        overprovision-lvm: 'true'
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Check Diskspace
+    - name: Install dependencies
       run: |
-        df
+        # python -m pip install --upgrade pip
+        # python -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install numpy pyparsing ninja
+        # Kaldi dependencies
+        sudo apt-get install sox
+    - name: Check dependencies
+      run: |
+        ./tools/check_dependencies.sh
+    - name: Build kaldi
+      run: |
+        cd tools
+        git clone -b pykaldi_02 https://github.com/pykaldi/kaldi.git
+        cd kaldi/tools
+        git pull
+        cd extras
+        sudo ./install_mkl.sh
+        cd ../../..
+        ./install_kaldi.sh
+    - name: Build PyKaldi
+      run: |
+        python3 setup.py install
+    - name: Test PyKaldi
+      run: |
+        python3 setup.py test
+    - name: Create Wheel
+      run: |
+        python3 setup.py sdist bdist_wheel
+        cd dist
+        ls -l
+        

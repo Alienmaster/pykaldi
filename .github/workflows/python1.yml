@@ -40,7 +40,7 @@ jobs:
     - name: Build clif
       run: |
         cd tools
-        ./install_clif.sh
+        sudo ./install_clif.sh
     - name: Build kaldi
       run: |
         cd tools

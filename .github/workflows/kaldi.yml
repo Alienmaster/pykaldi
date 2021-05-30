@@ -40,6 +40,6 @@ jobs:
         git pull
         cd extras
         sudo ./install_mkl.sh
-        ../../..
+        cd ../../..
         ./install_kaldi.sh
         

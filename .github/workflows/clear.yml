@@ -46,6 +46,7 @@ jobs:
         ./install_protobuf.sh
     - name: Build clif
       run: |
+        source PyKaldi_env/bin/activate
         cd tools
         ./install_clif.sh
     - name: Build kaldi

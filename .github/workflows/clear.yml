@@ -36,8 +36,13 @@ jobs:
         sudo apt-get install sox
     - name: Check dependencies
       run: |
+        pwd
+        ls -la
         source PyKaldi_env/bin/activate
+        pwd
+        ls -la
         cd tools
+        ls -la
         ./tools/check_dependencies.sh
     - name: Build protobuf
       run: |

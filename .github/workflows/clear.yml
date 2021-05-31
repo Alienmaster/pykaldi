@@ -1,4 +1,4 @@
-name: Python package
+name: Build PyKaldi
 
 on:
   workflow_dispatch:
@@ -38,6 +38,7 @@ jobs:
         export py_env=$PWD/PyKaldi_env
     - name: check PWD
       run: |
+        echo $py_env
         ls -la
         pwd
         cd ~

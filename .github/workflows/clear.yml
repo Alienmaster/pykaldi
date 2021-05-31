@@ -28,30 +28,31 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m venv PyKaldi_env
+        python -m pip install virtualenv
+        python -m virtualenv pykaldi_env
         # python -m pip install flake8 pytest
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        PyKaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel
+        pykaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel setuptools
         # Kaldi dependencies
         sudo apt-get install sox
     - name: Check dependencies
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         cd tools
         ./check_dependencies.sh
     - name: Build protobuf
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         cd tools
         ./install_protobuf.sh
     - name: Build clif
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         cd tools
         ./install_clif.sh
     - name: Build kaldi
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         cd tools
         git clone -b pykaldi_02 https://github.com/pykaldi/kaldi.git
         cd kaldi/tools
@@ -62,15 +63,15 @@ jobs:
         ./install_kaldi.sh
     - name: Build PyKaldi
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         python3 setup.py install
     - name: Test PyKaldi
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         python3 setup.py test
     - name: Create Wheel
       run: |
-        source PyKaldi_env/bin/activate
+        source pykaldi_env/bin/activate
         python3 setup.py sdist bdist_wheel
         cd dist
         ls -l

@@ -41,11 +41,11 @@ jobs:
         sudo apt-get install sox
     - name: Check dependencies
       run: |
-        ./tools/check_dependencies.sh
+        sudo ./tools/check_dependencies.sh
     - name: Build protobuf
       run: |
         cd tools
-        ./install_protobuf.sh
+        sudo ./install_protobuf.sh
     - name: Build clif
       run: |
         cd tools
@@ -62,13 +62,13 @@ jobs:
         ./install_kaldi.sh
     - name: Build PyKaldi
       run: |
-        python3 setup.py install
+        sudo python3 setup.py install
     - name: Test PyKaldi
       run: |
-        python3 setup.py test
+        sudo python3 setup.py test
     - name: Create Wheel
       run: |
-        python3 setup.py sdist bdist_wheel
+        sudo python3 setup.py sdist bdist_wheel
         cd dist
         ls -l
         

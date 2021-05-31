@@ -106,7 +106,7 @@ fi
 
 ######################################################################
 
-CLIF_GIT="-b pykaldi https://github.com/pykaldi/clif.git"
+CLIF_GIT="https://github.com/google/clif.git"
 LLVM_GIT="--depth=1200 -b llvmorg-5.0.0-rc1 https://github.com/llvm/llvm-project.git"
 LLVM_DIR="$CLIF_DIR/../clif_backend"
 BUILD_DIR="$LLVM_DIR/build_matcher"

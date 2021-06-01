@@ -32,7 +32,7 @@ jobs:
         python -m virtualenv pykaldi_env
         # python -m pip install flake8 pytest
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pykaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel setuptools
+        pykaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel
         # Kaldi dependencies
         sudo apt-get install sox
     - name: Check dependencies

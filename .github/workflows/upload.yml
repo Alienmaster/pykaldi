@@ -1,4 +1,4 @@
-name: Build PyKaldi
+name: Upload PyKaldi
 
 on:
   workflow_dispatch:

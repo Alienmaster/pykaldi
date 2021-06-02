@@ -46,14 +46,13 @@ jobs:
         cd tools
         ./install_protobuf.sh
     - name: Pushes test file
-      uses: alienmaster/copy_file_to_another_repo_action@main
+      uses:  dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'extras/*.cson'
+        source_file: 'extras/'
         destination_repo: 'alienmaster/pykaldi'
         destination_folder: 'docker'
         user_email: 'mitachundkrach@gmail.com'
         user_name: 'Alienmaster'
-        commit_message: 'Automatic Build'
         destination_branch: 'master'

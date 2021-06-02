@@ -46,7 +46,7 @@ jobs:
         cd tools
         ./install_protobuf.sh
     - name: Pushes test file
-      uses: dmnemec/copy_file_to_another_repo_action@master
+      uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
@@ -56,3 +56,4 @@ jobs:
         user_email: 'mitachundkrach@gmail.com'
         user_name: 'Alienmaster'
         commit_message: 'A custom message for the commit'
+        destination_branch: 'master'

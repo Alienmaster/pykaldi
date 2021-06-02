@@ -50,10 +50,10 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'LICENSE'
+        source_file: 'extras/*.cson'
         destination_repo: 'alienmaster/pykaldi'
         destination_folder: 'docker'
         user_email: 'mitachundkrach@gmail.com'
         user_name: 'Alienmaster'
-        commit_message: 'A custom message for the commit'
+        commit_message: 'Automatic Build'
         destination_branch: 'master'

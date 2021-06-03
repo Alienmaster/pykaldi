@@ -73,5 +73,13 @@ jobs:
       run: |
         source pykaldi_env/bin/activate
         python3 setup.py sdist bdist_wheel
-        cd dist
-        ls -l
+    - name: Push Wheel to Repo
+      uses:  dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'dist/'
+        destination_repo: 'alienmaster/PyKaldiWheel'
+        user_email: 'mitachundkrach@gmail.com'
+        user_name: 'Alienmaster'
+        destination_branch: 'main'

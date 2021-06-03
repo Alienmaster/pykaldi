@@ -34,7 +34,7 @@ jobs:
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pykaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel
         # Kaldi dependencies
-        sudo apt-get install sox
+        sudo apt-get install sox git-lfs
         git config --global http.version HTTP/1.1
     - name: Check dependencies
       run: |
@@ -74,6 +74,12 @@ jobs:
       run: |
         source pykaldi_env/bin/activate
         python3 setup.py sdist bdist_wheel
+    - name: Make Repository LFS-Ready
+      run: |
+        git lfs install
+        git lfs track '*.whl'
+        git lfs track '*.egg'
+        git lfs track '*.tar.gz'
     - name: Push Wheel to Repo
       uses:  dmnemec/copy_file_to_another_repo_action@main
       env:

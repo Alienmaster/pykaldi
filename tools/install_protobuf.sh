@@ -13,7 +13,7 @@
 #   Modifies $PATH and $PKG_CONFIG_PATH
 #
 set -e
-PROTOBUF_GIT="-b v3.14.0 https://github.com/google/protobuf.git"
+PROTOBUF_GIT="-b v3.15.5 https://github.com/google/protobuf.git"
 
 PROTOBUF_DIR="$PWD/protobuf"
 

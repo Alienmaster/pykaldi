@@ -35,7 +35,6 @@ jobs:
         pykaldi_env/bin/python3 -m pip install numpy pyparsing ninja wheel
         # Kaldi dependencies
         sudo apt-get install sox git-lfs
-        git config --global http.version HTTP/1.1
     - name: Check dependencies
       run: |
         source pykaldi_env/bin/activate

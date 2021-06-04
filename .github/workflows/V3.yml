@@ -75,4 +75,5 @@ jobs:
         python3 setup.py sdist bdist_wheel
     - name: Upload Wheel
       run: |
-      
+        twine upload -u "__token__" -p ${{ secrets.API_TOKEN_GITHUB }} dist/*
+        

@@ -75,5 +75,6 @@ jobs:
         python3 setup.py sdist bdist_wheel
     - name: Upload Wheel
       run: |
+        source pykaldi_env/bin/activate
         twine upload -u "__token__" -p ${{ secrets.PYPI }} dist/*
         

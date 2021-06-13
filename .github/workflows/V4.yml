@@ -69,11 +69,14 @@ jobs:
       run: |
         source pykaldi_env/bin/activate
         python3 setup.py test
-    - name: Create Wheel
+    - name: Build manylinux Python wheels
+      uses: RalfG/python-wheels-manylinux-build@v0.3.4-manylinux2014_x86_64
+      with:
+        python-versions: 'cp37-cp37m cp38-cp38 cp39-cp39'
+        build-requirements: 'cython numpy'
+    - name: Publish wheels to PyPI
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI }}
       run: |
-        source pykaldi_env/bin/activate
-        python3 setup.py sdist bdist_wheel
-    - name: Upload Wheel
-      run: |
-        source pykaldi_env/bin/activate
-        twine upload -u "__token__" -p ${{ secrets.PYPI }} dist/*
+        twine upload dist/*-manylinux*.whl

@@ -1,4 +1,4 @@
-name: Build and Upload PyKaldi
+name: Build and Upload PyKaldi (manylinux)
 
 on:
   workflow_dispatch:
